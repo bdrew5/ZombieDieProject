@@ -38,7 +38,7 @@ public class ZombieDice
 
 
   public void findDieFace(){
-    //figures out if a brain or a shotgun was rolled and to the count of the type
+    //figures out if a brain or a shotgun was rolled and adds to the count of that type
     if (color ==1){
       counter++;
       if (side <= 3)
