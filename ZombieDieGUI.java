@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.geometry.Pos;
 import javafx.scene.shape.*;
 import javafx.scene.image.*;
+import javafx.scene.effect.ImageInput;
 
 public class ZombieDieGUI extends GridPane {
     ZombieDice d1 = new ZombieDice();
@@ -65,8 +66,9 @@ public class ZombieDieGUI extends GridPane {
     private Button roll1;
     private Button stop2;
     private Button roll2;
-    private int b;
-    private int s;
+
+
+
 
     public ZombieDieGUI() {
         currentPlayer = 1;
@@ -243,16 +245,14 @@ public class ZombieDieGUI extends GridPane {
 
     private void processRoll(ActionEvent event1){
         if (currentPlayer%2 == 1) {
-            //rolling for player1
+
             if (!isFeet1) {
-                //if the last die wasn't a footprint, gets a new die
                 d1.rollZombie();
                 d1.findDieFace();
                 type1 = d1.getColor();
                 side1 = d1.getSide();
             }
             else {
-                //if the last die was a footprint, keep the die and roll again
                 d1.setColor(type1);
                 d1.rollOnlySide();
                 d1.findDieFace();
@@ -282,13 +282,305 @@ public class ZombieDieGUI extends GridPane {
                 d1.findDieFace();
                 side3 = d1.getSide();
             }
-            b= d1.getBrains();
-            s= d1.getShots();
+            int b= d1.getBrains();
+            int s= d1.getShots();
 
+            if(type1==3){
+                bigDie1.setFill(Color.RED);
+                if(red == 3 && side1 <=4){
+                    smallRed3.setFill(Color.WHITE);
+                    red--;
+                }
+                else   if (red == 2 && side1 <=4) {
+                    smallRed2.setFill(Color.WHITE);
+                    red--;
+                }
+                else  if (red == 1 && side1 <=4) {
+                    smallRed1.setFill(Color.WHITE);
+                    red--;
+                }
+                if(side1<=1){
+                    bigSmallDie1.setFill(new ImagePattern(brains));
+                    isFeet1 = false;
+                }
+                else if(side1 <=4){
+                    bigSmallDie1.setFill(new ImagePattern(shotguns));
+                    isFeet1 = false;
+                }
+                else{
+                    bigSmallDie1.setFill(new ImagePattern(feet));
+                    isFeet1 = true;
+                }
+            }
+            else if (type1==2){
+                bigDie1.setFill(Color.YELLOW);
+                if (yellow == 4 && side1 <=4) {
+                    smallYellow4.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else  if(yellow == 3 && side1 <=4){
+                    smallYellow3.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else  if (yellow == 2 && side1 <=4) {
+                    smallYellow2.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else  if (yellow == 1 && side1 <=4) {
+                    smallYellow1.setFill(Color.WHITE);
+                    yellow--;
+                }
+
+                if(side1 <= 2){
+                    bigSmallDie1.setFill(new ImagePattern(brains));
+                    isFeet1 = false;
+                }
+                else if(side1 <=4){
+                    bigSmallDie1.setFill(new ImagePattern(shotguns));
+                    isFeet1 = false;
+                }
+                else{
+                    bigSmallDie1.setFill(new ImagePattern(feet));
+                    isFeet1 = true;
+                }
+            }
+            else{
+                bigDie1.setFill(Color.GREEN);
+                if(green == 6 && side1 <=4){
+                    smallGreen6.setFill(Color.WHITE);
+                    green--;
+                }
+                else  if (green == 5 && side1 <=4) {
+                    smallGreen5.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 4 && side1 <=4) {
+                    smallGreen4.setFill(Color.WHITE);
+                    green--;
+                }
+                else  if(green == 3 && side1 <=4){
+                    smallGreen3.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 2 && side1 <=4) {
+                    smallGreen2.setFill(Color.WHITE);
+                    green--;
+                }
+                else  if (green == 1 && side1 <=4) {
+                    smallGreen1.setFill(Color.WHITE);
+                    green--;
+                }
+
+                if(side1<=3){
+                    bigSmallDie1.setFill(new ImagePattern(brains));
+                    isFeet1 = false;
+                }
+                else if(side1<=4){
+                    bigSmallDie1.setFill(new ImagePattern(shotguns));
+                    isFeet1 = false;
+                }
+                else{
+                    bigSmallDie1.setFill(new ImagePattern(feet));
+                    isFeet1 = true;
+                }
+            }
+            if(type2==3){
+                bigDie2.setFill(Color.RED);
+                if(red == 3 && side2 <=4){
+                    smallRed3.setFill(Color.WHITE);
+                    red--;
+                }
+                else if (red == 2 && side2 <=4) {
+                    smallRed2.setFill(Color.WHITE);
+                    red--;
+                }
+                else if (red == 1 && side2 <=4) {
+                    smallRed1.setFill(Color.WHITE);
+                    red--;
+                }
+                if(side2<=1){
+                    bigSmallDie2.setFill(new ImagePattern(brains));
+                    isFeet2 = false;
+                }
+                else if(side2 <=4){
+                    bigSmallDie2.setFill(new ImagePattern(shotguns));
+                    isFeet2 = false;
+                }
+                else{
+                    bigSmallDie2.setFill(new ImagePattern(feet));
+                    isFeet2 = true;
+                }
+            }
+            else if (type2 == 2){
+                bigDie2.setFill(Color.YELLOW);
+                if (yellow == 4 && side2 <=4) {
+                    smallYellow4.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else if(yellow == 3 && side2 <=4){
+                    smallYellow3.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else if (yellow == 2 && side2 <=4) {
+                    smallYellow2.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else if (yellow == 1 && side2 <=4) {
+                    smallYellow1.setFill(Color.WHITE);
+                    yellow--;
+                }
+
+                if(side2 <= 2){
+                    bigSmallDie2.setFill(new ImagePattern(brains));
+                    isFeet2 = false;
+                }
+                else if(side2 <=4){
+                    bigSmallDie2.setFill(new ImagePattern(shotguns));
+                    isFeet2 = false;
+                }
+                else{
+                    bigSmallDie2.setFill(new ImagePattern(feet));
+                    isFeet2 = true;
+                }
+            }
+            else{
+                bigDie2.setFill(Color.GREEN);
+                if(green == 6 && side2 <=4){
+                    smallGreen6.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 5 && side2 <=4) {
+                    smallGreen5.setFill(Color.WHITE);
+                    green--;
+                }
+                else  if (green == 4 && side2 <=4) {
+                    smallGreen4.setFill(Color.WHITE);
+                    green--;
+                }
+                else if(green == 3 && side2 <=4){
+                    smallGreen3.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 2 && side2 <=4) {
+                    smallGreen2.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 1 && side2 <=4) {
+                    smallGreen1.setFill(Color.WHITE);
+                    green--;
+                }
+                if(side2<=3){
+                    bigSmallDie2.setFill(new ImagePattern(brains));
+                    isFeet2 = false;
+                }
+                else if(side2<=4){
+                    bigSmallDie2.setFill(new ImagePattern(shotguns));
+                    isFeet2 = false;
+                }
+                else{
+                    bigSmallDie2.setFill(new ImagePattern(feet));
+                    isFeet2 = true;
+                }
+            }
+            if(type3==3){
+                bigDie3.setFill(Color.RED);
+                if(red == 3 && side3 <=4){
+                    smallRed3.setFill(Color.WHITE);
+                    red--;
+                }
+                else if (red == 2 && side3 <=4) {
+                    smallRed2.setFill(Color.WHITE);
+                    red--;
+                }
+                else if (red == 1 && side3 <=4) {
+                    smallRed1.setFill(Color.WHITE);
+                    red--;
+                }
+                if(side3<=1){
+                    bigSmallDie3.setFill(new ImagePattern(brains));
+                    isFeet3 = false;
+                }
+                else if(side3 <=4){
+                    bigSmallDie3.setFill(new ImagePattern(shotguns));
+                    isFeet3 = false;
+                }
+                else{
+                    bigSmallDie3.setFill(new ImagePattern(feet));
+                    isFeet3 = true;
+                }
+            }
+            else if (type3==2){
+                bigDie3.setFill(Color.YELLOW);
+                if (yellow == 4 && side3 <=4) {
+                    smallYellow4.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else if(yellow == 3 && side3 <=4){
+                    smallYellow3.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else if (yellow == 2 && side3 <=4) {
+                    smallYellow2.setFill(Color.WHITE);
+                    yellow--;
+                }
+                else if (yellow == 1 && side3 <=4) {
+                    smallYellow1.setFill(Color.WHITE);
+                    yellow--;
+                }
+
+                if(side3 <= 2){
+                    bigSmallDie3.setFill(new ImagePattern(brains));
+                    isFeet3 = false;
+                }
+                else if(side3 <=4){
+                    bigSmallDie3.setFill(new ImagePattern(shotguns));
+                    isFeet3 = false;
+                }
+                else{
+                    bigSmallDie3.setFill(new ImagePattern(feet));
+                    isFeet3 = true;
+                }
+            }
+            else{
+                bigDie3.setFill(Color.GREEN);
+                if(green == 6 && side3 <=4){
+                    smallGreen6.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 5 && side3 <=4) {
+                    smallGreen5.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 4 && side3 <=4) {
+                    smallGreen4.setFill(Color.WHITE);
+                    green--;
+                }
+                else if(green == 3 && side3 <=4){
+                    smallGreen3.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 2 && side3 <=4) {
+                    smallGreen2.setFill(Color.WHITE);
+                    green--;
+                }
+                else if (green == 1 && side3 <=4) {
+                    smallGreen1.setFill(Color.WHITE);
+                    green--;
+                }
+                if(side3<=3){
+                    bigSmallDie3.setFill(new ImagePattern(brains));
+                    isFeet3 = false;
+                }
+                else if(side3<=4){
+                    bigSmallDie3.setFill(new ImagePattern(shotguns));
+                    isFeet3 = false;
+                }
+                else{
+                    bigSmallDie3.setFill(new ImagePattern(feet));
+                    isFeet3 = true;
+                }
+            }
             if (s>=3){
-                /*forces player 1 to stop if they have 3 or more shotguns,
-                 it removes all buttons but player 1's stop
-                */
                 stop2.setVisible(false);
                 stop1.setVisible(true);
                 roll1.setVisible(false);
@@ -301,63 +593,46 @@ public class ZombieDieGUI extends GridPane {
                 shots1.setText(s + "");
             }
         }
-        else {
-            //player2 rolls
+        else{
+
             if (!isFeet1) {
-                //rolls a new die, if last die wasn't a footprint
                 d2.rollZombie();
                 d2.findDieFace();
                 type1 = d2.getColor();
                 side1 = d2.getSide();
             } else {
-                //rolls same die again, if last die was a footprint
                 d2.setColor(type1);
                 d2.rollOnlySide();
                 d2.findDieFace();
                 side1 = d2.getSide();
             }
-            if (!isFeet2) {
+            if (!isFeet2){
                 d2.rollZombie();
                 d2.findDieFace();
                 type2 = d2.getColor();
                 side2 = d2.getSide();
-            } else {
+            }
+            else{
                 d2.setColor(type2);
                 d2.rollOnlySide();
                 d2.findDieFace();
                 side2 = d2.getSide();
             }
-            if (!isFeet3) {
+            if(!isFeet3){
                 d2.rollZombie();
                 d2.findDieFace();
                 type3 = d2.getColor();
                 side3 = d2.getSide();
-            } else {
+            }
+            else{
                 d2.setColor(type3);
                 d2.rollOnlySide();
                 d2.findDieFace();
                 side3 = d2.getSide();
             }
-            b = d2.getBrains();
-            s = d2.getShots();
-            if (s>=3){
-                shots2.setText(" ");
-                brain2.setText(" ");
-                stop1.setVisible(false);
-                stop2.setVisible(true);
-                roll2.setVisible(false);
-                roll1.setVisible(false);
-            }
-            else {
-                brain2.setText(b + "");
-                shots2.setText(s + "");
-            }
-        }
+            int b= d2.getBrains();
+            int s= d2.getShots();
             if(type1==3){
-                /*
-                sets the color and image on the big dice
-                removes a small die of that color, if a footprint wasn't rolled
-                 */
                 bigDie1.setFill(Color.RED);
                 if(red == 3 && side1 <=4){
                     smallRed3.setFill(Color.WHITE);
@@ -654,10 +929,22 @@ public class ZombieDieGUI extends GridPane {
                     isFeet3 = true;
                 }
             }
+            if (s>=3){
+                shots2.setText(" ");
+                brain2.setText(" ");
+                stop1.setVisible(false);
+                stop2.setVisible(true);
+                roll2.setVisible(false);
+                roll1.setVisible(false);
+            }
+            else {
+                brain2.setText(b + "");
+                shots2.setText(s + "");
+            }
+        }
     }
 
     private void processStop(ActionEvent event2){
-        //if a player presses stop, everything resets and player number goes up
         currentPlayer++;
         green=6;
         yellow=4;
@@ -720,7 +1007,6 @@ public class ZombieDieGUI extends GridPane {
         }
     }
     private void processReset(ActionEvent event3){
-        //starts a new game, resets everything
         player.setText("Player 1's Turn");
         green=6;
         yellow=4;
